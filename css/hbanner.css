@@ -1,0 +1,89 @@
+.hbanner {
+  display: flex;
+  flex-direction: row;
+}
+
+.hbanner .banner {
+  display: inline;
+  height: 580px;
+  flex: 1;
+  background-color: #fafafa;
+  padding: 0;
+}
+
+.hbanner h1 {
+  color: #111111;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: 0em;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  margin-top: 53px;
+}
+
+.hbanner h2 {
+  color: #111111;
+  font-size: 21px;
+  line-height: 1.2381;
+  font-weight: 400;
+  letter-spacing: .016em;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  margin-top: 4px;
+}
+
+.banner .link a {
+  color: #0070c9;
+}
+
+.hbanner .banner:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 10px 5px 10px 10px;
+  background-image: url(../img/apple_event_large.jpg);
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hbanner .banner:nth-child(1) h1,
+.hbanner .banner:nth-child(1) h2 {
+  color: #f5f5f7;
+}
+
+.hbanner .banner:nth-child(1) .link {
+  margin-bottom: 53px;
+}
+
+.hbanner .banner:nth-child(2) {
+  margin: 10px 10px 10px 5px;
+  background-image: url(../img/tile__cauwwcyyn9hy_large.jpg);
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width:1100px) {
+  .banner {
+    height: 595px;
+    background-size: 115%;
+    background-position: center bottom;
+    background-image: url(../img/banner_small.jpg);
+  }
+}
+
+@media only screen and (max-width:740px) {
+  .banner {
+    height: 445px;
+  }
+
+  .hbanner {
+    height: 1020px;
+    flex-direction: column;
+  }
+
+  .hbanner .banner {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+}

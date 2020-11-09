@@ -1,0 +1,250 @@
+/*
+初始化样式
+**/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  width: 100%;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 设置Z轴，防止伪元素高于图层 */
+  position: relative;
+  z-index: 1;
+}
+
+.nav a {
+  color: #ffffff;
+  /* 设置下划线属性:underline(a标签默认样式)，none(设置为没有下划线) */
+  text-decoration: none;
+  width: 108px;
+  text-align: center;
+}
+
+.nav .logo {
+  height: 44px;
+  background-image: url(../img/apple.svg);
+  /* 设置背景图片填充不重复 */
+  background-repeat: no-repeat;
+  /* 设置背景图片位置 */
+  background-position: center;
+}
+
+.nav .search {
+  height: 44px;
+  /* 背景图片大小设置 */
+  background-size: 18px 88px;
+  background-image: url(../img/search.svg);
+  /* 设置背景图片填充不重复 */
+  background-repeat: no-repeat;
+  /* 设置背景图片位置 */
+  background-position: center 0px;
+}
+
+.nav .buy {
+  height: 44px;
+  background-image: url(../img/bagsvg.svg);
+  /* 设置背景图片填充不重复 */
+  background-repeat: no-repeat;
+  /* 设置背景图片位置 */
+  background-position: center;
+}
+
+/* 按钮的样式 */
+.toggleBtn {
+  height: 44px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 按钮内线条的样式 */
+.toggleBtn .line {
+  height: 1.5px;
+  width: 18px;
+  background-color: #ffffff;
+  /* 不显示 */
+  display: none;
+  transition: all 0.5s;
+  /* 设置选择的中心点 */
+  /* transform-origin: left center; */
+}
+
+.toggleBtn .line:nth-child(1) {
+  position: absolute;
+  left: calc(50% - 9px);
+  top: 15px;
+}
+
+.toggleBtn .line:nth-child(2) {
+  position: absolute;
+  left: calc(50% - 9px);
+  top: 25px;
+}
+
+.navpage {
+  background-color: #000000;
+  display: flex;
+  /* 高度设为0 */
+  height: 0vh;
+  /* 宽度始终为100vw */
+  width: 100vw;
+  /* 过渡效果延时 */
+  transition: all 0.8s;
+  /* 溢出隐藏 */
+  overflow: hidden;
+  /* 为了不让其干扰其他元素的正常显示，使用想对定位使其脱离文档流 */
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.navpage .navMain {
+  /* 需要提前设置好元素的属性，不然在过渡动画中会导致显示问题 */
+  width: 100%;
+}
+
+/*
+设定屏幕小于768像素时的样式
+**/
+@media only screen and (max-width:768px) {
+  .toggleBtn {
+    display: flex;
+    /* 设置Z轴 */
+    z-index: 100;
+    /* 需要相对定位 */
+    position: relative;
+  }
+
+  /* 将按钮显示为块元素 */
+  .toggleBtn .line {
+    display: block;
+  }
+
+  /* 隐藏其他标签 */
+  .nav .text,
+  .nav .search {
+    display: none;
+  }
+
+  /* 改变元素分布 */
+  .nav {
+    justify-content: space-between;
+  }
+
+  /* 修改元素的大小 */
+  .nav a,
+  .nav label {
+    width: 50px;
+  }
+
+  /* 重新设置分布顺序 */
+  .nav .toggleBtn {
+    order: 1;
+  }
+
+  .nav .logo {
+    order: 2;
+    z-index: 100;
+    position: relative;
+  }
+
+  .nav .buy {
+    order: 3;
+  }
+
+  /* 绑定元素并修改元素属性 */
+  #choose:checked~.toggleBtn .line:nth-child(1) {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+
+  #choose:checked~.toggleBtn .line:nth-child(2) {
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+
+  #choose:checked~.navpage {
+    display: flex;
+    flex-direction: column;
+    /* 
+    vw:viewport width:100vw == 100% viewport width
+    vh:viewport height:100vh == 100% viewport height
+    */
+    width: 100vw;
+    height: 100vh;
+    /* 固定定位，会脱离正常文档流 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 54px;
+  }
+
+  .searchInput{
+    height: 36px;
+    margin: 0 28px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 4px;
+    color: #cccccc;
+    background-color: rgba(45, 45, 45, 0.98);
+  }
+
+  .searchInput .icon {
+    width: 32px;
+    height: 36px;
+    /*
+    设置背景图片时需要考虑的4个属性
+    */
+    background-size: 13px 13px;
+    background-image: url(../img/search_small.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .searchInput input {
+    flex: 1;
+    margin: 0 10px;
+    height: 100%;
+    /* 背景颜色设置为透明 */
+    background: transparent;
+    /* 去除边框 */
+    border: none;
+    /* 去除聚焦提示框 */
+    outline: none;
+    color: #ffffff;
+  }
+
+  hr {
+    border-color: #333333;
+  }
+
+  .navList{
+    margin: 0 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .navList a{
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+  }
+
+  .navList a:last-child {
+    border-bottom: none;
+  }
+}
